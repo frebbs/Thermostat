@@ -3,8 +3,6 @@ $(document).ready(() => {
     $('#temperature').text(thermostat.getCurrentTemperature());
 });
 
-
-
 // interface.js
 $(document).ready(() => {
     let thermostat = new Thermostat();
@@ -38,9 +36,23 @@ $(document).ready(() => {
     });
 
     function updateTemperature() {
-        $('#temperature').text(thermostat.temperature);
-        $('#temperature').attr('class', thermostat.energyUsage());
+        $('#temperature').text(thermostat.temperature).attr('class', thermostat.energyUsage());
     }
+
+    function displayWeather(city) {
+        const url = 'http://api.openweathermap.org/data/2.5/weather?q=' + city;
+        const token = '&appid=a3d9eb01d4de82b9b8d0849ef604dbed';
+        const units = '&units=metric';
+        $.get(url + token + units, function (data) {
+            $('#current-temperature').text(data.main.temp);
+        });
+    }
+    $('#select-city').submit(function(event) {
+        event.preventDefault();
+        let city = $('#current-city').val();
+        displayWeather(city);
+    });
+    displayWeather('London');
 
 });
 
