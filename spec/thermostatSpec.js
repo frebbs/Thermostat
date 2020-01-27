@@ -5,10 +5,17 @@ describe('Themostat', () => {
 
     beforeEach( () => {
         thermostat = new Thermostat();
-    })
+    });
 
     it('starts at 20 degrees', () => {
-        expect(thermostat.temperature).toEqual(20);
-    })
+        expect(thermostat.getCurrentTemperature()).toEqual(20);
+    });
+
+    it('has a minimum of 10 degrees', () => {
+        for (let x = 0; x < 11; x++) {
+            thermostat.down();
+        }
+        expect(thermostat.getCurrentTemperature()).toEqual(10);
+    });
 });
 
