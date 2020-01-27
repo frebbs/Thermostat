@@ -5,6 +5,8 @@ class Thermostat {
     constructor() {
         this.MINIMUM_TEMPERATURE = 10;
         this.temperature = 20;
+        this.MAX_LIMIT_PSM_ON = 25;
+        this.MAX_LIMIT_PSM_OFF = 32;
         this.powerSavingMode = true;
     };
 
@@ -21,7 +23,15 @@ class Thermostat {
             return;
         }
 
-        this.temperature --;
+        this.temperature -= 1;
+    };
+
+    up() {
+        if (this.isMaximumTemperature()) {
+            return;
+        }
+
+        this.temperature += 1;
     };
 
     isPowerSavingModeOn() {
@@ -29,11 +39,18 @@ class Thermostat {
     };
 
     switchPowerSavingsModeOff() {
-        this.powerSavingMode = false;
+       return this.powerSavingMode = false;
     };
 
     switchPowerSavingsModeOn() {
-      this.powerSavingMode = true;
+     return this.powerSavingMode = true;
     };
+
+    isMaximumTemperature() {
+        if(this.isPowerSavingModeOn() === false) {
+            return this.temperature === this.MAX_LIMIT_PSM_OFF;
+        }
+        return this.temperature === this.MAX_LIMIT_PSM_ON;
+    }
 
 }
