@@ -34,6 +34,14 @@ describe('Thermostat', () => {
         expect(thermostat.isPowerSavingModeOn()).toBe(true);
     });
 
+    it('can be reset beck to default mode (PSM ON)', () => {
+       for (let x = 0; x < 14; x++) {
+           thermostat.up();
+       }
+       thermostat.resetTemperature();
+       expect(thermostat.getCurrentTemperature()).toEqual(20);
+    });
+
     describe('when power saving mode is on', () => {
        it('has a maximum temperature of 25 degrees', () => {
            for(let x = 0; x < 6; x++) {
