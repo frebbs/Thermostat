@@ -63,29 +63,29 @@ describe('Thermostat', () => {
 
     describe('displaying usage levels', () => {
         describe('when the temperature is below 18 degrees', () => {
-           it('it is considered low-usage', () => {
-               for (let x = 0; x < 3, x++;) {
-                   thermostat.down();
-               }
-               expect(thermostat.energyUsage()).toEqual('low-usage');
-           });
+            it('it is considered low-usage', () => {
+                for (let x = 0; x < 3; x++) {
+                    thermostat.down();
+                }
+                expect(thermostat.energyUsage()).toEqual('low-usage');
+            });
         });
 
         describe('when the temperature is between 18 and 25 degrees', () => {
-            it('it is considered medium usage', () => {
-                expect(thermostat.engegyUsage()).toEqual('medium-usage');
-            })
+            it('it is considered medium-usage', ()  => {
+                expect(thermostat.energyUsage()).toEqual('medium-usage');
+            });
         });
+
         describe('when the temperature is anything else', () => {
-            it('is considered high-usage', () => {
-                thermostat.powerSavingsMode = false;
-                for(let x = 0; x < 6; x++) {
+            it('it is considered high-usage', () => {
+                thermostat.powerSavingMode = false;
+                for (let x = 0; x < 6; x++) {
                     thermostat.up();
                 }
                 expect(thermostat.energyUsage()).toEqual('high-usage');
             });
         });
     });
-
 });
 
