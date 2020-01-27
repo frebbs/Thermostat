@@ -26,6 +26,7 @@ class Thermostat {
             return;
         }
         this.temperature --;
+        return this.temperature;
     };
 
     up() {
@@ -33,6 +34,7 @@ class Thermostat {
             return;
         }
         this.temperature ++;
+        return this.temperature;
     };
 
     isPowerSavingModeOn() {
